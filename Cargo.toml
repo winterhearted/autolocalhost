@@ -1,0 +1,41 @@
+[package]
+name = "autolocalhost"
+version = "0.2.7"
+edition = "2021"
+description = "A tool to automatically configure local domains for Docker containers"
+authors = ["Winterhearted <winterhearted@byte0.org>"]
+
+[dependencies]
+clap = { version = "4.4", features = ["derive"] }
+tokio = { version = "1.36.0", features = ["full"] }
+bollard = "0.15.0"
+winapi = { version = "0.3.9", features = ["winerror", "namedpipeapi", "handleapi", "fileapi", "winbase"] }
+handlebars = "5.1.0"
+serde = { version = "1.0.197", features = ["derive"] }
+serde_json = "1.0.114"
+anyhow = "1.0.81"
+thiserror = "1.0.58"
+rcgen = "0.12.0"
+rand = "0.8.5"
+chrono = "0.4.35"
+time = "0.3.41"
+regex = "1.10.4"
+log = "0.4.21"
+env_logger = "0.11.1"
+uuid = { version = "1.7.0", features = ["v4"] }
+futures-util = "0.3.30"
+base64 = "0.21.7"
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.52", features = [
+    "Win32_System_Services",
+    "Win32_System_Registry",
+    "Win32_System_Threading",
+    "Win32_Foundation",
+    "Win32_Security",
+] }
+widestring = "1.0"
+
+[target.'cfg(unix)'.dependencies]
+nix = { version = "0.27", features = ["user"] }
+libc = "0.2"
